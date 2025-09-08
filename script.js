@@ -99,6 +99,38 @@ const showCatagory = (datas) => {
   });
 };
 
-const showAllnewPlants = (datas)=> {
- console.log(datas.plants)
-}
+const showAllnewPlants = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Fruit Tree") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm">
+          <figure>
+            <img
+              src= "${plant.image}"
+              class="w-60 h-60 object-cover rounded-sm mt-5 "
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">${plant.name}</h2>
+            <p>
+              ${plant.description}
+            </p>
+            <h1> price :${plant.price}</h1>
+          
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary w-full">Buy Now</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
