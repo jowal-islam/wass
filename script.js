@@ -9,12 +9,12 @@ loadCatagorys();
 
 // all plants
 const loadAllPlants = () => {
-  const url = "https://openapi.programming-hero.com/api/plants"
+  const url = "https://openapi.programming-hero.com/api/plants";
   fetch(url)
-  .then(res => res.json())
-  .then(json => showAllPlants(json))
-}
-loadAllPlants()
+    .then((res) => res.json())
+    .then((json) => showAllPlants(json));
+};
+loadAllPlants();
 // load catagory plants
 // const loadCatagorysplants = () => {
 //   const url = "https://openapi.programming-hero.com/api/category/1"
@@ -24,7 +24,7 @@ loadAllPlants()
 // }
 // loadCatagorysplants()
 
-//  show Catagorys ui 
+//  show Catagorys ui
 // const showCatagoryPlants = (datas)=>{
 //   const plants = datas.plants
 //   plants.forEach(data =>{
@@ -33,14 +33,14 @@ loadAllPlants()
 // }
 
 // show all Plants
-const showAllPlants = (datas)=>{
-  const plants = datas.plants
-  const palntsContainer = document.getElementById('plants')
+const showAllPlants = (datas) => {
+  const plants = datas.plants;
+  const palntsContainer = document.getElementById("plants");
   palntsContainer.innerHTML = "";
- plants.forEach(plant => {
-  //  console.log(plant)
-   const divContainer = document.createElement('div')
-   divContainer.innerHTML = `
+  plants.forEach((plant) => {
+    //  console.log(plant)
+    const divContainer = document.createElement("div");
+    divContainer.innerHTML = `
       
       <div class="card bg-base-100  shadow-sm">
           <figure>
@@ -51,7 +51,7 @@ const showAllPlants = (datas)=>{
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${plant.category}</h2>
+            <h2 class="card-title">${plant.name}</h2>
             <p>
               ${plant.description}
             </p>
@@ -63,10 +63,10 @@ const showAllPlants = (datas)=>{
           </div>
         </div> 
       
-   `
-   palntsContainer.appendChild(divContainer)
- })
-}
+   `;
+    palntsContainer.appendChild(divContainer);
+  });
+};
 
 // show category_name
 const showCatagory = (datas) => {
@@ -82,17 +82,23 @@ const showCatagory = (datas) => {
     btn.style.borderRadius = "5px";
     btn.style.cursor = "pointer";
 
-    btn.addEventListener("click", ()=> {
-        const url = "https://openapi.programming-hero.com/api/category/1";
+    btn.addEventListener("click", () => {
+      const url = "https://openapi.programming-hero.com/api/plants";
 
       fetch(url)
-        .then(res => res.json())
-        .then(json => console.log(json))
-        // .then(json => showAllPlants(json)) 
-       
-        .catch(err => console.error("Error:", err));
-    })  
+        .then((res) => res.json())
+        // .then(json => console.log(json))
+        .then((json) => showAllnewPlants(json))
+
+        .catch((err) => console.error("Error:", err));
+      const palntsContainer = document.getElementById("plants");
+      palntsContainer.innerHTML = "";
+    });
 
     categoriesDiv.appendChild(btn);
   });
 };
+
+const showAllnewPlants = (datas)=> {
+ console.log(datas.plants)
+}
