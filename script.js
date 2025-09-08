@@ -26,23 +26,29 @@ const showAllPlants = (datas) => {
     const divContainer = document.createElement("div");
     divContainer.innerHTML = `
       
-      <div class="card bg-base-100  shadow-sm">
-          <figure>
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
             <img
               src= "${plant.image}"
-              class="w-60 h-60 object-cover rounded-sm mt-5 "
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
               alt="Shoes"
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${plant.name}</h2>
-            <p>
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
               ${plant.description}
             </p>
-            <h1> price :${plant.price}</h1>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
           
             <div class="card-actions justify-end">
-              <button class="btn btn-primary w-full">Buy Now</button>
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
             </div>
           </div>
         </div> 
@@ -57,7 +63,7 @@ const showCatagory = (datas) => {
   const categories = datas.categories;
   categories.forEach((cat, index) => {
     const categoriesDiv = document.getElementById("Categories");
-    const btn = document.createElement("button");
+    const btn = document.createElement("div");
 
     btn.innerText = cat.category_name;
     btn.style.display = "block";
@@ -65,12 +71,21 @@ const showCatagory = (datas) => {
     btn.style.padding = "10px";
     btn.style.borderRadius = "5px";
     btn.style.cursor = "pointer";
+    // btn.style.border = "2px solid green";
+// btn hover effect
+    btn.addEventListener("mouseover", () => {
+      btn.style.backgroundColor = "#15803D"; 
+      btn.style.borderColor = "blue"; 
+    });
+    btn.addEventListener("mouseout", () => {
+      btn.style.backgroundColor = "white"; 
+      btn.style.borderColor = "green"; 
+    });
 
-
-// add btn for categories control
+    // add btn for categories control
     btn.addEventListener("click", (event) => {
-      console.log("Clicked Category:", cat.category_name); // কোন category তে ক্লিক হলো
-      console.log("Category Index:", index); // কত নম্বর index সেটা
+      console.log("Clicked Category:", cat.category_name); 
+      console.log("Category Index:", index); 
       // if category_name == "fruit tree" this code is run
 
       if (cat.category_name === "Fruit Tree") {
@@ -80,7 +95,6 @@ const showCatagory = (datas) => {
           .then((json) => showFruitTree(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-
       } else if (cat.category_name === "Flowering Tree") {
         const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
@@ -88,23 +102,68 @@ const showCatagory = (datas) => {
           .then((json) => showFlowering(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-
-      } else if(cat.category_name === "Shade Tree"){
-          const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Shade Tree") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showShadeTree(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      }
-
+      } else if (cat.category_name === "Medicinal Tree") {
+        const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showMedicinal(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } else if(cat.category_name === "Timber Tree"){
+           const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showTimber(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } else if(cat.category_name === "Evergreen Tree"){
+           const url = "https://openapi.programming-hero.com/api/plants";
+          fetch(url)
+          .then((res) => res.json())
+          .then((json) => showEvergreen(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } else if(cat.category_name === "Ornamental Plant"){
+           const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showOrnamental(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      }else if(cat.category_name === "Bamboo"){
+          const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showBamboo(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } else if(cat.category_name === "Climber"){
+           const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showClimber(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } else if(cat.category_name === "Aquatic Plant"){
+          const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
+          .then((res) => res.json())
+          .then((json) => showAquatic(json));
+        const palntsContainer = document.getElementById("plants");
+        palntsContainer.innerHTML = "";
+      } 
     });
 
     categoriesDiv.appendChild(btn);
   });
 };
-
-
 
 // show fruit tree
 const showFruitTree = (datas) => {
@@ -116,23 +175,29 @@ const showFruitTree = (datas) => {
       const divContainer = document.createElement("div");
       divContainer.innerHTML = `
       
-      <div class="card bg-base-100  shadow-sm">
-          <figure>
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
             <img
               src= "${plant.image}"
-              class="w-60 h-60 object-cover rounded-sm mt-5 "
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
               alt="Shoes"
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${plant.name}</h2>
-            <p>
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
               ${plant.description}
             </p>
-            <h1> price :${plant.price}</h1>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
           
             <div class="card-actions justify-end">
-              <button class="btn btn-primary w-full">Buy Now</button>
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
             </div>
           </div>
         </div> 
@@ -154,23 +219,29 @@ const showFlowering = (datas) => {
       const divContainer = document.createElement("div");
       divContainer.innerHTML = `
       
-      <div class="card bg-base-100  shadow-sm">
-          <figure>
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
             <img
               src= "${plant.image}"
-              class="w-60 h-60 object-cover rounded-sm mt-5 "
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
               alt="Shoes"
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${plant.name}</h2>
-            <p>
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
               ${plant.description}
             </p>
-            <h1> price :${plant.price}</h1>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
           
             <div class="card-actions justify-end">
-              <button class="btn btn-primary w-full">Buy Now</button>
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
             </div>
           </div>
         </div> 
@@ -192,23 +263,29 @@ const showShadeTree = (datas) => {
       const divContainer = document.createElement("div");
       divContainer.innerHTML = `
       
-      <div class="card bg-base-100  shadow-sm">
-          <figure>
+     <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
             <img
               src= "${plant.image}"
-              class="w-60 h-60 object-cover rounded-sm mt-5 "
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
               alt="Shoes"
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title">${plant.name}</h2>
-            <p>
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
               ${plant.description}
             </p>
-            <h1> price :${plant.price}</h1>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
           
             <div class="card-actions justify-end">
-              <button class="btn btn-primary w-full">Buy Now</button>
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
             </div>
           </div>
         </div> 
@@ -218,3 +295,301 @@ const showShadeTree = (datas) => {
     }
   });
 };
+
+// medicinal tree ui
+const showMedicinal = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Medicinal Tree") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+//  showTimber Tree
+const showTimber = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Timber Tree") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+
+//  showOrnamental Tree
+const showOrnamental = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    
+    if (plant.category === "Ornamental Plant") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+// showEvergreen 
+const showEvergreen = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Evergreen Tree") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+// showBamboo
+const showBamboo = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Bamboo") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+// showClimber
+const showClimber = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Climber") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+
+const showAquatic = (datas) => {
+  const palntsContainer = document.getElementById("plants");
+  const plants = datas.plants;
+  plants.forEach((plant) => {
+    if (plant.category === "Aquatic Plant") {
+      console.log(plant);
+      const divContainer = document.createElement("div");
+      divContainer.innerHTML = `
+      
+      <div class="card bg-base-100  shadow-sm hover:shadow-2xl transition-all duration-100">
+          <figure class= "px-5 pt-3">
+            <img
+              src= "${plant.image}"
+              class=" w-full h-48 object-cover rounded-sm mt-5 shadow-md"
+              alt="Shoes"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-xl font-bold text-black">${plant.name}</h2>
+            <p class = "text-gray-500">
+              ${plant.description}
+            </p>
+            <div class=" flex justify-between">
+                 <h1 class=" bg-[#DCFCE7] rounded-3xl p-3">Fruit Tree</h1>
+                <h1 class=" font-bold text-lg"> 
+                  <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                  price :${plant.price}
+                </h1>
+            </div>
+          
+            <div class="card-actions justify-end">
+              <button class="btn bg-[#15803D] w-full rounded-2xl text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div> 
+      
+   `;
+      palntsContainer.appendChild(divContainer);
+    }
+  });
+};
+
