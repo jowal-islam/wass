@@ -72,20 +72,20 @@ const showCatagory = (datas) => {
     btn.style.borderRadius = "5px";
     btn.style.cursor = "pointer";
     // btn.style.border = "2px solid green";
-// btn hover effect
+    // btn hover effect
     btn.addEventListener("mouseover", () => {
-      btn.style.backgroundColor = "#15803D"; 
-      btn.style.borderColor = "blue"; 
+      btn.style.backgroundColor = "#15803D";
+      btn.style.borderColor = "blue";
     });
     btn.addEventListener("mouseout", () => {
-      btn.style.backgroundColor = "white"; 
-      btn.style.borderColor = "green"; 
+      btn.style.backgroundColor = "white";
+      btn.style.borderColor = "green";
     });
 
     // add btn for categories control
     btn.addEventListener("click", (event) => {
-      console.log("Clicked Category:", cat.category_name); 
-      console.log("Category Index:", index); 
+      console.log("Clicked Category:", cat.category_name);
+      console.log("Category Index:", index);
       // if category_name == "fruit tree" this code is run
 
       if (cat.category_name === "Fruit Tree") {
@@ -116,49 +116,49 @@ const showCatagory = (datas) => {
           .then((json) => showMedicinal(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } else if(cat.category_name === "Timber Tree"){
-           const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Timber Tree") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showTimber(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } else if(cat.category_name === "Evergreen Tree"){
-           const url = "https://openapi.programming-hero.com/api/plants";
-          fetch(url)
+      } else if (cat.category_name === "Evergreen Tree") {
+        const url = "https://openapi.programming-hero.com/api/plants";
+        fetch(url)
           .then((res) => res.json())
           .then((json) => showEvergreen(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } else if(cat.category_name === "Ornamental Plant"){
-           const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Ornamental Plant") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showOrnamental(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      }else if(cat.category_name === "Bamboo"){
-          const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Bamboo") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showBamboo(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } else if(cat.category_name === "Climber"){
-           const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Climber") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showClimber(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } else if(cat.category_name === "Aquatic Plant"){
-          const url = "https://openapi.programming-hero.com/api/plants";
+      } else if (cat.category_name === "Aquatic Plant") {
+        const url = "https://openapi.programming-hero.com/api/plants";
         fetch(url)
           .then((res) => res.json())
           .then((json) => showAquatic(json));
         const palntsContainer = document.getElementById("plants");
         palntsContainer.innerHTML = "";
-      } 
+      }
     });
 
     categoriesDiv.appendChild(btn);
@@ -386,7 +386,6 @@ const showOrnamental = (datas) => {
   const palntsContainer = document.getElementById("plants");
   const plants = datas.plants;
   plants.forEach((plant) => {
-    
     if (plant.category === "Ornamental Plant") {
       console.log(plant);
       const divContainer = document.createElement("div");
@@ -424,7 +423,7 @@ const showOrnamental = (datas) => {
     }
   });
 };
-// showEvergreen 
+// showEvergreen
 const showEvergreen = (datas) => {
   const palntsContainer = document.getElementById("plants");
   const plants = datas.plants;
@@ -593,3 +592,10 @@ const showAquatic = (datas) => {
   });
 };
 
+// catch the button
+const addButton = palntsContainer.querySelector("button"); // এই card এর button টা ধরবে
+addButton.addEventListener("click", () => {
+  // console.log(`${plant.name} add to cart!`);
+  alert('hi this btn')
+  console.log('btn')
+});
