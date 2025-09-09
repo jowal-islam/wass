@@ -5,7 +5,7 @@ const loadCatagorys = () => {
     .then((res) => res.json())
     .then((json) => showCatagory(json));
 };
-// loadCatagorys();
+loadCatagorys();
 
 // all plants
 const loadAllPlants = () => {
@@ -61,7 +61,7 @@ const showAllPlants = (datas) => {
 const addToCard = ()=> {
 
 }
-// loadAllPlants();
+loadAllPlants();
 
 // show category_name
 const showCatagory = (datas) => {
