@@ -6,13 +6,28 @@ const loadCatagorys = () => {
     .then((json) => showCatagory(json));
 };
 loadCatagorys();
+// spinner manage function
+const manageSpinner = (status) => {
+  console.log(status)
+  if(status === true){
+     document.getElementById('spinner').classList.remove('hidden')
+     document.getElementById('plants').classList.add('hidden')
+  } else {
+    document.getElementById('plants').classList.remove('hidden')
+     document.getElementById('spinner').classList.add('hidden')
+  }
+}
 
 // all plants
 const loadAllPlants = () => {
+  manageSpinner(true) 
   const url = "https://openapi.programming-hero.com/api/plants";
   fetch(url)
     .then((res) => res.json())
-    .then((json) => showAllPlants(json));
+    .then((json) => {showAllPlants(json)
+     manageSpinner(false); 
+});
+   
 };
 
 
@@ -58,9 +73,7 @@ const showAllPlants = (datas) => {
   });
 };
 //  add price to total
-const addToCard = ()=> {
 
-}
 loadAllPlants();
 
 // show category_name
@@ -169,6 +182,8 @@ const showCatagory = (datas) => {
     categoriesDiv.appendChild(btn);
   });
 };
+
+
 
 // show fruit tree
 const showFruitTree = (datas) => {
@@ -597,10 +612,3 @@ const showAquatic = (datas) => {
   });
 };
 
-// catch the button
-const addButton = palntsContainer.querySelector("button"); // এই card এর button টা ধরবে
-addButton.addEventListener("click", () => {
-  // console.log(`${plant.name} add to cart!`);
-  alert('hi this btn')
-  console.log('btn')
-});

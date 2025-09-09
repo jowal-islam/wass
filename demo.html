@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>data load</h1>
+    <script>
+
+           const showDataUi = (Plants)=> {
+            console.log(Plants)
+        }
+        const manageSpinner = (status)=> {
+            console.log(status)
+        }
+
+        
+        const allplantsDataLoad = ()=>{
+            manageSpinner(true)
+            const url = "https://openapi.programming-hero.com/api/plants"
+            fetch(url)
+            .then(res => res.json())
+            .then(res => showDataUi(res))
+        }
+        allplantsDataLoad()
+     
+    </script>
+</body>
+</html>
