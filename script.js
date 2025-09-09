@@ -5,7 +5,7 @@ const loadCatagorys = () => {
     .then((res) => res.json())
     .then((json) => showCatagory(json));
 };
-loadCatagorys();
+// loadCatagorys();
 
 // all plants
 const loadAllPlants = () => {
@@ -14,7 +14,7 @@ const loadAllPlants = () => {
     .then((res) => res.json())
     .then((json) => showAllPlants(json));
 };
-loadAllPlants();
+
 
 // show all Plants
 const showAllPlants = (datas) => {
@@ -57,6 +57,11 @@ const showAllPlants = (datas) => {
     palntsContainer.appendChild(divContainer);
   });
 };
+//  add price to total
+const addToCard = ()=> {
+
+}
+// loadAllPlants();
 
 // show category_name
 const showCatagory = (datas) => {
