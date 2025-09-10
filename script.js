@@ -1,3 +1,6 @@
+
+
+let total = 0;
 // all categories
 const loadCatagorys = () => {
   const url = "https://openapi.programming-hero.com/api/categories";
@@ -69,6 +72,19 @@ const showAllPlants = (datas) => {
         </div> 
       
    `;
+   const btn = divContainer.querySelector(".btn")
+  
+  btn.addEventListener('click', ()=>{
+    console.log("btn click")
+    total += parseFloat(plant.price)
+    const price = document.getElementById("price")
+    console.log(price)
+     price.innerHTML = `
+        <h1> price :${plant.price} </h1>
+        <h1>total price :${total} </h1>
+     ` 
+    
+  })
     palntsContainer.appendChild(divContainer);
   });
 };
